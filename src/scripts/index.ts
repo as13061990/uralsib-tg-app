@@ -41,7 +41,10 @@ window.onload = (): void => {
       width: canvasWidth,
       height: canvasHeight,
       parent: 'root',
-      physics: {default: 'arcade'},
+      physics: {
+        default: 'arcade',
+        arcade: { debug: true }
+      },
       render: { transparent: true },
       scene: [ Boot, Game ]
     }

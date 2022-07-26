@@ -1,29 +1,35 @@
-const player = require('../../assets/images/player.png');
+import Background from '../components/Background';
+import GameActions from '../actions/GameActions';
+import Player from '../components/Player';
 
 class Game extends Phaser.Scene {
   constructor() {
     super('Game');
   }
 
-  private player: Phaser.Physics.Arcade.Sprite;
+  public player: Player;
+  public actions: GameActions;
+  public bg: Background;
+  public platforms: Phaser.Physics.Arcade.Group;
+
+  public init(): void {
+    this.actions = new GameActions(this);
+  }
 
   public preload(): void {
-    this.load.spritesheet('player', player, { frameWidth: 150, frameHeight: 199 });
+    this.actions.loadAssets();
   }
 
   public create(): void {
-    this.anims.create({
-      key: 'run',
-      frames: this.anims.generateFrameNumbers('player', { start: 0, end: 7 }),
-      frameRate: 10,
-      repeat: -1
-    });
-    
-    this.player = this.physics.add.sprite(this.cameras.main.centerX, this.cameras.main.centerY, 'player').setCollideWorldBounds(true);
+    this.bg = new Background(this);
+    this.player = new Player(this);
+    this.platforms = this.physics.add.group();
+    this.physics.add.collider(this.player, this.platforms);
+    this.actions.startPlatforms();
   }
 
   public update(): void {
-    this.player.anims.play('run', true);
+    
   }
 }
 
