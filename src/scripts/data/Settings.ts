@@ -12,10 +12,10 @@ class Settings {
     minHeight: 1100,
     maxHeight: 1620
   }
-
   public readonly lang: { [key: string]: string } = langs.ru;
-
   public screen: screen = screen.START;
+  public readonly speed: number = 1200;
+  public readonly duration: number = 3000;
 
   public setScreen(screen: screen): screen {
     this.screen = screen;

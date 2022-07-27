@@ -2,6 +2,11 @@ import Game from '../scenes/Game';
 import Platform from '../components/Platform';
 import Zone from '../components/Zone';
 import Player from '../components/Player';
+import Coin from '../components/Coin';
+import { screen, coin } from '../types/enums';
+import Settings from '../data/Settings';
+import User from '../data/User';
+import Score from '../components/Score';
 
 const MAX_JUMP = 120; // абстрактное число максимального прыжка
 const MIN_INDENT = 70; // минимально расстояние для следующей платформы
@@ -38,6 +43,18 @@ class GameActions {
     if (position === null) return;
     const platform = new Platform(this.scene, position.x, position.y, size);
     this.scene.platforms.add(platform);
+    this.createCoin(platform);
+  }
+
+  private createCoin(platform: Platform): void {
+    if (Phaser.Math.Between(1, 3) !== 1) return;
+
+    const type = Phaser.Math.Between(1, 3) === coin.BLUE ? coin.BLUE : coin.RED;
+    const texture = type === coin.BLUE ? 'blue-' : 'red-';
+    const num = type === coin.BLUE ? Phaser.Math.Between(1, 4) : Phaser.Math.Between(1, 5);
+    const x = Phaser.Math.Between(platform.x - platform.size / 2 + 15, platform.x + platform.size / 2 - 15);
+    const icon = new Coin(this.scene, x, platform.y - 80, texture + num, type);
+    this.scene.coins.add(icon);
   }
 
   private getPlatformPosition(size: number, start: boolean = false): Iposition {
@@ -74,11 +91,15 @@ class GameActions {
     this.scene.platforms.children.iterate((platform: Platform): void => {
       platform.tween.stop();
     });
+    this.scene.coins.children.iterate((coin: Coin): void => {
+      coin.tween.stop();
+    });
     this.scene.bg.tween.stop();
     this.scene.gameOver = true;
  
     this.scene.time.addEvent({ delay: 2000, callback: (): void => {
-      window.location.reload();
+      Settings.setScreen(screen.RESULT);
+      this.scene.scene.start('Menu');
     }, loop: false });
   }
 
@@ -86,16 +107,56 @@ class GameActions {
     this.scene.physics.add.overlap(
       this.scene.platforms,
       this.scene.player,
-      this.collisions.bind(this)
+      this.platformCollisions.bind(this)
+    );
+    this.scene.physics.add.overlap(
+      this.scene.coins,
+      this.scene.player,
+      this.coinCollisions.bind(this)
     );
   }
 
-  private collisions(player: Player, platform: Platform): void {
+  private platformCollisions(player: Player, platform: Platform): void {
     this.gameOver();
     const x = platform.x - platform.body.width / 2;
     const y = platform.y;
     player.setGravityY(0);
-    player.body.reset(x, y);
+    this.scene.add.tween({
+      targets: player,
+      duration: 100,
+      x: x,
+      y: y,
+      onComplete: (): void => player.body.reset(x, y)
+    });
+  }
+
+  private coinCollisions(player: Player, icon: Coin): void {
+    if (!icon.taked) {
+      icon.setTaked();
+      const score = icon.coin === coin.BLUE ? 50 : 20;
+      new Score(this.scene, icon.x, icon.y - 50, '+' + score);
+
+      if (User.scoreIncrement(score)) {
+        this.finish();
+      }
+    }
+  }
+
+  private finish(): void {
+    this.scene.gameOver = true;
+    Settings.setScreen(screen.RESULT);
+    this.scene.scene.start('Menu');
+  }
+
+  public interval(): void {
+    this.scene.time.addEvent({ delay: 1000, callback: (): void => {
+      if (!this.scene.gameOver) {
+
+        if (User.scoreIncrement(1)) {
+          this.finish();
+        }
+      }
+    }, loop: true });
   }
 }
 

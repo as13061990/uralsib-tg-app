@@ -9,12 +9,8 @@ class Menu extends Phaser.Scene {
     super('Menu');
   }
   
-  public actions: MenuActions;
+  public actions: MenuActions = new MenuActions(this);
   public screen: Iscreen;
-
-  public init(): void {
-    this.actions = new MenuActions(this);
-  }
 
   public preload(): void {
     this.actions.loadAssets();

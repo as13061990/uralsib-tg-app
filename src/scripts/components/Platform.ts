@@ -1,7 +1,6 @@
+import Settings from '../data/Settings';
 import Game from '../scenes/Game';
-import Player from './Player';
 
-const SPEED = 3000; // скорость движения платформы
 const SIDE = 38; // ширина края платформа
 const HEIGHT = 78; // высота спрайта платформы
 
@@ -13,7 +12,7 @@ class Platform extends Phaser.Physics.Arcade.Sprite {
   }
 
   public tween: Phaser.Tweens.Tween;
-  private size: number;
+  public size: number;
   private left: Phaser.GameObjects.Sprite;
   private center: Phaser.GameObjects.TileSprite;
   private right: Phaser.GameObjects.Sprite;
@@ -48,8 +47,8 @@ class Platform extends Phaser.Physics.Arcade.Sprite {
   private move(): void {
     this.tween = this.scene.add.tween({
       targets: this,
-      x: '-=1200',
-      duration: SPEED,
+      x: '-=' + Settings.speed,
+      duration: Settings.duration,
       onComplete: (): void => this.destroy()
     });
   }
@@ -65,10 +64,6 @@ class Platform extends Phaser.Physics.Arcade.Sprite {
     this.left.setX(this.leftX());
     this.right.setX(this.rightX());
     this.center.setX(this.x);
-  }
-
-  private static getIndent(player: Player): number {
-    return -100;
   }
 }
 

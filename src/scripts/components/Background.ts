@@ -1,7 +1,7 @@
 import Game from '../scenes/Game';
 
 const HEIGHT = 1700;
-const WIDTH = 8854;
+const WIDTH = 3926;
 const SPEED = 60000;
 
 class Background extends Phaser.GameObjects.TileSprite {

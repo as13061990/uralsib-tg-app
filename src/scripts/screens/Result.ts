@@ -12,7 +12,7 @@ class Result implements Iscreen {
 
   private init(): void {
     const main = this.scene.cameras.main;
-
+    
   }
 
   public hide(): void {}
