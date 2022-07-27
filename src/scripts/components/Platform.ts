@@ -4,20 +4,9 @@ import Player from './Player';
 const SPEED = 3000; // скорость движения платформы
 const SIDE = 38; // ширина края платформа
 const HEIGHT = 78; // высота спрайта платформы
-const MAX_JUMP = 150; // абстрактное число максимального прыжка
-const INDENT = 300; // границы отступа для платформ снизу и сверху
 
 class Platform extends Phaser.Physics.Arcade.Sprite {
-  constructor(scene: Game, size: number, start: boolean = false) {
-    const x = start ? scene.cameras.main.width / 1.5 : scene.cameras.main.width + size / 2;
-    const last: Platform = scene.platforms.getChildren()[scene.platforms.getLength() - 1] as Platform;
-    let y = scene.player.body.bottom + 70;
-    
-    if (!start) {
-      const max = last.y - MAX_JUMP < INDENT ? last.y - MAX_JUMP : INDENT;
-      const min = last.y + MAX_JUMP > scene.cameras.main.height - INDENT ? last.y + MAX_JUMP : scene.cameras.main.height - INDENT;
-      y = Phaser.Math.Between(max, min);
-    }
+  constructor(scene: Game, x: number, y: number, size: number) {
     super(scene, x, y, 'pixel');
     this.size = size;
     this.init();

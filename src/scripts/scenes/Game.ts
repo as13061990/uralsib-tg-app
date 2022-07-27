@@ -26,6 +26,7 @@ class Game extends Phaser.Scene {
     this.platforms = this.physics.add.group();
     this.physics.add.collider(this.player, this.platforms);
     this.actions.startPlatforms();
+    this.actions.createClickZone();
   }
 
   public update(): void {
