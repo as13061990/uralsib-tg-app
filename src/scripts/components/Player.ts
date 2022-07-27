@@ -22,6 +22,10 @@ class Player extends Phaser.Physics.Arcade.Sprite {
       repeat: -1
     });
     this.scene.anims.create({
+      key: 'crash',
+      frames: [ { key: 'player', frame: 0 } ]
+    });
+    this.scene.anims.create({
       key: 'jump',
       frames: [ { key: 'player', frame: 1 } ]
     });
@@ -54,7 +58,9 @@ class Player extends Phaser.Physics.Arcade.Sprite {
       this.jump();
     }
     
-    if (!this.body.touching.down) {
+    if (this.scene.gameOver) {
+      this.anims.play('crash', true);
+    } else if (!this.body.touching.down) {
       this.anims.play('jump', true);
     } else {
       this.anims.play('run', true);

@@ -11,8 +11,10 @@ class Game extends Phaser.Scene {
   public actions: GameActions;
   public bg: Background;
   public platforms: Phaser.Physics.Arcade.Group;
+  public gameOver: boolean;
 
   public init(): void {
+    this.gameOver = false;
     this.actions = new GameActions(this);
   }
 
@@ -27,10 +29,7 @@ class Game extends Phaser.Scene {
     this.physics.add.collider(this.player, this.platforms);
     this.actions.startPlatforms();
     this.actions.createClickZone();
-  }
-
-  public update(): void {
-    
+    this.actions.setCollosions();
   }
 }
 

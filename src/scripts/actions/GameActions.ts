@@ -1,6 +1,7 @@
 import Game from '../scenes/Game';
 import Platform from '../components/Platform';
 import Zone from '../components/Zone';
+import Player from '../components/Player';
 
 const bg = require('../../assets/images/bg.jpg');
 const player = require('../../assets/images/player.png');
@@ -88,7 +89,23 @@ class GameActions {
       platform.tween.stop();
     });
     this.scene.bg.tween.stop();
+    this.scene.gameOver = true;
+  }
 
+  public setCollosions(): void {
+    this.scene.physics.add.overlap(
+      this.scene.platforms,
+      this.scene.player,
+      this.collisions.bind(this)
+    );
+  }
+
+  private collisions(player: Player, platform: Platform): void {
+    this.gameOver();
+    const x = platform.x - platform.body.width / 2;
+    const y = platform.y;
+    player.setGravityY(0);
+    player.body.reset(x, y);
   }
 }
 

@@ -75,7 +75,7 @@ class Zone extends Phaser.GameObjects.Zone {
   }
 
   protected preUpdate(): void {
-    if (this.pointer.isDown) {
+    if (this.pointer.isDown || this.scene.input.pointer1.isDown) {
       this.downCallback();
     }
   }
