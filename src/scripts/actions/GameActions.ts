@@ -8,10 +8,10 @@ const pixel = require('../../assets/images/pixel.png');
 const platform = require('../../assets/images/platform.png');
 const platformTile = require('../../assets/images/platform-tile.png');
 
-const MAX_JUMP = 100; // абстрактное число максимального прыжка
-const MIN_INDENT = 50; // минимально расстояние для следующей платформы
+const MAX_JUMP = 120; // абстрактное число максимального прыжка
+const MIN_INDENT = 70; // минимально расстояние для следующей платформы
 const TOP_INDENT = 300; // верхняя граница отступа для платформы
-const BOTTOM_INDENT = 100; // нижняя граница отступа для платформы
+const BOTTOM_INDENT = 200; // нижняя граница отступа для платформы
 const DISTANCE = 400 // расстояние между платформами
 
 class GameActions {
