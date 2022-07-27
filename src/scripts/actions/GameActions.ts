@@ -3,12 +3,6 @@ import Platform from '../components/Platform';
 import Zone from '../components/Zone';
 import Player from '../components/Player';
 
-const bg = require('../../assets/images/bg.jpg');
-const player = require('../../assets/images/player.png');
-const pixel = require('../../assets/images/pixel.png');
-const platform = require('../../assets/images/platform.png');
-const platformTile = require('../../assets/images/platform-tile.png');
-
 const MAX_JUMP = 120; // абстрактное число максимального прыжка
 const MIN_INDENT = 70; // минимально расстояние для следующей платформы
 const TOP_INDENT = 300; // верхняя граница отступа для платформы
@@ -22,14 +16,6 @@ class GameActions {
 
   private scene: Game;
   private platforms: Phaser.Time.TimerEvent;
-
-  public loadAssets(): void {
-    this.scene.load.image('bg', bg);
-    this.scene.load.image('pixel', pixel);
-    this.scene.load.image('platform', platform);
-    this.scene.load.image('platform-tile', platformTile);
-    this.scene.load.spritesheet('player', player, { frameWidth: 150, frameHeight: 199 });
-  }
 
   public startPlatforms(): void {
     this.createPlatform(true);
@@ -90,6 +76,10 @@ class GameActions {
     });
     this.scene.bg.tween.stop();
     this.scene.gameOver = true;
+ 
+    this.scene.time.addEvent({ delay: 2000, callback: (): void => {
+      window.location.reload();
+    }, loop: false });
   }
 
   public setCollosions(): void {

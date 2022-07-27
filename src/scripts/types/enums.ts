@@ -1,9 +1,8 @@
-enum test {
-  FIRST = 1,
-  SECOND = 2,
-  THIRD = 3
+enum screen {
+  START = 1,
+  RESULT = 2
 }
 
 export {
-  test
+  screen
 }

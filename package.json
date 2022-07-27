@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "mobx": "^6.6.1",
     "phaser": "^3.55.2"
   }
 }

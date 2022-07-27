@@ -1,6 +1,10 @@
 @font-face {
-  font-family: Triomphe;
-  src: url('../fonts/Triomphe.ttf');
+  font-family: stolzl_medium;
+  src: url('../fonts/stolzl_medium.otf');
+}
+@font-face {
+  font-family: stolzl_light;
+  src: url('../fonts/stolzl_light.otf');
 }
 * {
   font-family: Bip;
@@ -21,7 +25,7 @@ html, body {
 body {
   margin: 0;
   padding: 0;
-  background: #0B0D22;
+  background: #1E0941;
   display: flex;
   align-items: center;
   justify-content: center;

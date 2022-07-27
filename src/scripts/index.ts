@@ -3,7 +3,8 @@ import '../assets/css/style.css';
 import * as Phaser from 'phaser';
 import Boot from './scenes/Boot';
 import Game from './scenes/Game';
-import sizes from './data/sizes';
+import Menu from './scenes/Menu';
+import Settings from './data/Settings';
 
 const gcd = (num1: number, num2: number): number => {
   while (num1 && num2) num1 > num2 ? num1 %= num2 : num2 %= num1;
@@ -16,13 +17,13 @@ window.onload = (): void => {
     const root: HTMLElement = document.querySelector('#root');
     const clientHeight = Math.round(document.body.clientHeight);
     const clientWidth = Math.round(document.body.clientWidth);
-    const canvasWidth = sizes.width;
-    let canvasHeight = Math.round((sizes.width * clientHeight) / clientWidth);
+    const canvasWidth = Settings.sizes.width;
+    let canvasHeight = Math.round((Settings.sizes.width * clientHeight) / clientWidth);
     let width = 0;
     let height = 0;
     
-    if (canvasHeight > sizes.maxHeight) canvasHeight = sizes.maxHeight;
-    else if (canvasHeight < sizes.minHeight) canvasHeight = sizes.minHeight;
+    if (canvasHeight > Settings.sizes.maxHeight) canvasHeight = Settings.sizes.maxHeight;
+    else if (canvasHeight < Settings.sizes.minHeight) canvasHeight = Settings.sizes.minHeight;
  
     const x = canvasWidth / gcd(canvasHeight, canvasWidth);
     const y = canvasHeight / gcd(canvasHeight, canvasWidth);
@@ -46,7 +47,7 @@ window.onload = (): void => {
         // arcade: { debug: true }
       },
       render: { transparent: true },
-      scene: [ Boot, Game ]
+      scene: [ Boot, Menu, Game ]
     }
     const game = new Phaser.Game(config);
     window.addEventListener('resize', (): void => {

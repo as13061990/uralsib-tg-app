@@ -1,5 +1,7 @@
 import * as Webfont from '../libs/Webfonts.js';
 
+const loading = require('../../assets/images/loading.png');
+
 class Boot extends Phaser.Scene {
   constructor() {
     super('Boot');
@@ -16,7 +18,7 @@ class Boot extends Phaser.Scene {
     const scene = this;
     Webfont.load({
       custom: {
-        families: ['Triomphe']
+        families: ['stolzl_medium', 'stolzl_light']
       },
       active(): void {
         scene.fontsReady = true;
@@ -26,7 +28,7 @@ class Boot extends Phaser.Scene {
   }
 
   public preload(): void {
-    // this.load.image('test', '../../test.png');
+    this.load.image('loading', loading);
   }
 
   public update(): void {
@@ -35,7 +37,7 @@ class Boot extends Phaser.Scene {
       console.log('build', this.build);
       this.userReady = false;
       this.fontsReady = false;
-      this.scene.launch('Game');
+      this.scene.launch('Menu');
     }
   }
 

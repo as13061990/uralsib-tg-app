@@ -18,10 +18,6 @@ class Game extends Phaser.Scene {
     this.actions = new GameActions(this);
   }
 
-  public preload(): void {
-    this.actions.loadAssets();
-  }
-
   public create(): void {
     this.bg = new Background(this);
     this.player = new Player(this);
