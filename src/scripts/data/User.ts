@@ -1,6 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-
-const MAX_SCORE = 1000;
+import Settings from './Settings';
 
 class User {
   constructor() {
@@ -10,6 +9,7 @@ class User {
   public rules: boolean = false;
   public score: number = 0;
   public record: number = 0;
+  public maxScore: number = 1000;
 
   public resetScore(): number {
     this.score = 0;
@@ -17,10 +17,9 @@ class User {
   }
   
   public scoreIncrement(score: number): boolean {
-    this.score = this.score + score > MAX_SCORE ? MAX_SCORE : this.score + score;
+    this.score = this.score + score > Settings.maxScore ? Settings.maxScore : this.score + score;
     this.record = this.score > this.record ? this.score : this.record;
-    console.log('score', this.score);
-    return this.score === MAX_SCORE;
+    return this.score === Settings.maxScore;
   }
 
   public markRules(): boolean {

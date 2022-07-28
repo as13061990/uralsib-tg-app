@@ -37,6 +37,8 @@ class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   public jump(): void {
+    if (this.scene.pause.press) return;
+    
     if (this.body.touching.down && this.jumpCounter === 0) {
       this.jumpCounter = 1;
     }

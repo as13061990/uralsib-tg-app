@@ -2,6 +2,8 @@ import Background from '../components/Background';
 import GameActions from '../actions/GameActions';
 import Player from '../components/Player';
 import User from '../data/User';
+import ProgressBar from '../components/ProgressBar';
+import Pause from '../components/Pause';
 
 class Game extends Phaser.Scene {
   constructor() {
@@ -14,6 +16,8 @@ class Game extends Phaser.Scene {
   public platforms: Phaser.Physics.Arcade.Group;
   public coins: Phaser.Physics.Arcade.Group;
   public gameOver: boolean;
+  public progress: ProgressBar;
+  public pause: Pause;
 
   public init(): void {
     this.gameOver = false;
@@ -22,6 +26,8 @@ class Game extends Phaser.Scene {
 
   public create(): void {
     this.bg = new Background(this);
+    this.progress = new ProgressBar(this);
+    this.pause = new Pause(this);
     this.player = new Player(this);
     this.platforms = this.physics.add.group();
     this.coins = this.physics.add.group();

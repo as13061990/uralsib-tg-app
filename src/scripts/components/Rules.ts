@@ -1,6 +1,7 @@
 import User from '../data/User';
 import Game from '../scenes/Game';
 import Menu from '../scenes/Menu';
+import Modal from '../scenes/Modal';
 import Button from './Button';
 import Zone from './Zone';
 import Settings from '../data/Settings';
@@ -39,11 +40,6 @@ class Rules {
     if (this.scene.scene.isActive('Menu')) {
       const Menu = this.scene.game.scene.getScene('Menu') as Menu;
       Menu.screen.hide();
-    }
-    
-    if (this.scene.scene.isActive('Game')) {
-      const Game = this.scene.game.scene.getScene('Game') as Game;
-      Game.scene.pause();
     }
   }
 
@@ -168,8 +164,10 @@ class Rules {
       return;
     }
 
-    if (this.scene.scene.isActive('Game')) {
+    if (this.scene.scene.isActive('Modal')) {
+      const Modal = this.scene.game.scene.getScene('Modal') as Modal;
       const Game = this.scene.game.scene.getScene('Game') as Game;
+      Modal.scene.stop();
       Game.scene.resume();
       return;
     }

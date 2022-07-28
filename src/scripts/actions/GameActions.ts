@@ -136,7 +136,7 @@ class GameActions {
       const score = icon.coin === coin.BLUE ? 50 : 20;
       new Score(this.scene, icon.x, icon.y - 50, '+' + score);
 
-      if (User.scoreIncrement(score)) {
+      if (this.scoreIncrement(score)) {
         this.finish();
       }
     }
@@ -152,11 +152,17 @@ class GameActions {
     this.scene.time.addEvent({ delay: 1000, callback: (): void => {
       if (!this.scene.gameOver) {
 
-        if (User.scoreIncrement(1)) {
+        if (this.scoreIncrement(1)) {
           this.finish();
         }
       }
     }, loop: true });
+  }
+
+  private scoreIncrement(score: number): boolean {
+    const win = User.scoreIncrement(score);
+    this.scene.progress.update();
+    return win;
   }
 }
 

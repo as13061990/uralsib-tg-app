@@ -9,7 +9,7 @@ class Button extends Phaser.GameObjects.Sprite {
 
   public x: number;
   public y: number;
-  private press: boolean;
+  public press: boolean;
   public callback: Function = (): void => {};
 
   private init(): void {

@@ -16,6 +16,7 @@ class Settings {
   public screen: screen = screen.START;
   public readonly speed: number = 1200;
   public readonly duration: number = 3000;
+  public readonly maxScore: number = 1000;
 
   public setScreen(screen: screen): screen {
     this.screen = screen;
