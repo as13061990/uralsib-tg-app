@@ -9,7 +9,7 @@ class Settings {
 
   public readonly sizes = {
     width: 720,
-    minHeight: 1100,
+    minHeight: 1200,
     maxHeight: 1620
   }
   public readonly lang: { [key: string]: string } = langs.ru;

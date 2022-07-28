@@ -24,6 +24,14 @@ const red4 = require('../../assets/images/red-4.png');
 const red5 = require('../../assets/images/red-5.png');
 const ice = require('../../assets/images/ice.png');
 const flame = require('../../assets/images/flame.png');
+const progress = require('../../assets/images/progress.png');
+const progressBg = require('../../assets/images/progress-bg.png');
+const point = require('../../assets/images/point.png');
+const pause = require('../../assets/images/pause.png');
+const result = require('../../assets/images/result.png');
+const dot = require('../../assets/images/dot.png');
+const againBtn = require('../../assets/images/again-btn.png');
+const prizeBtn = require('../../assets/images/prize-btn.png');
 
 class MenuActions {
   constructor(scene: Menu) {
@@ -60,6 +68,14 @@ class MenuActions {
     this.scene.load.image('red-5', red5);
     this.scene.load.image('ice', ice);
     this.scene.load.image('flame', flame);
+    this.scene.load.image('progress', progress);
+    this.scene.load.image('progress-bg', progressBg);
+    this.scene.load.image('point', point);
+    this.scene.load.image('pause', pause);
+    this.scene.load.image('result', result);
+    this.scene.load.image('dot', dot);
+    this.scene.load.image('again-btn', againBtn);
+    this.scene.load.image('prize-btn', prizeBtn);
   }
 
   public clickRulesBtn(): void {
