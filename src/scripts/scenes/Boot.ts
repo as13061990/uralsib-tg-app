@@ -44,7 +44,7 @@ class Boot extends Phaser.Scene {
 
   private async checkUser(): Promise<void> {
     const telegram = window['Telegram']['WebApp'];
-    telegram.ready();
+    await telegram.ready();
 
     try {      
       User.setID(telegram.initDataUnsafe.user.id);
@@ -56,7 +56,6 @@ class Boot extends Phaser.Scene {
     }
     console.clear();
     console.log(telegram.initDataUnsafe);
-    console.log(telegram.initDataUnsafe.user);
     console.log(User.id);
 
     axios.post(process.env.API + '/getData', {
