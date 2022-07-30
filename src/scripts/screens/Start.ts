@@ -32,27 +32,27 @@ class Start implements Iscreen {
     }).setOrigin(0.5, 0.5).setLineSpacing(5);
 
     this.runFinsih = this.scene.add.text(80, this.text.getBounds().bottom + 40, Settings.lang.runFinsih, {
-      font: 'bold 28px stolzl_light',
+      font: '28px stolzl_light',
       color: '#FFFFFF'
     });
 
     this.thousand = this.scene.add.text(this.runFinsih.getBounds().right + 10, this.runFinsih.y, '1000', {
-      font: 'bold 28px stolzl_medium',
+      font: '28px stolzl_medium',
       color: '#FFFFFF'
     });
 
     this.bonusRuble = this.scene.add.text(90, this.thousand.getBounds().bottom + 5, Settings.lang.bonusRuble, {
-      font: 'bold 28px stolzl_medium',
+      font: '28px stolzl_medium',
       color: '#FFFFFF'
     });
     
     this.fromUralsib = this.scene.add.text(this.bonusRuble.getBounds().right + 10, this.bonusRuble.y, Settings.lang.fromUralsib, {
-      font: 'bold 28px stolzl_light',
+      font: '28px stolzl_light',
       color: '#FFFFFF'
     });
 
     this.goodluck = this.scene.add.text(main.centerX, this.fromUralsib.getBounds().bottom + 40, Settings.lang.goodluck, {
-      font: 'bold 28px stolzl_light',
+      font: '28px stolzl_light',
       color: '#FFFFFF',
       align: 'center'
     }).setOrigin(0.5, 0);
