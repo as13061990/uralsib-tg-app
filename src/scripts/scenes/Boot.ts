@@ -35,6 +35,7 @@ class Boot extends Phaser.Scene {
 
   public update(): void {
     if (this.userReady && this.fontsReady) {
+      console.clear();
       console.log('build', this.build);
       this.userReady = false;
       this.fontsReady = false;
@@ -44,7 +45,7 @@ class Boot extends Phaser.Scene {
 
   private async checkUser(): Promise<void> {
     const telegram = window['Telegram']['WebApp'];
-    await telegram.ready();
+    telegram.ready();
 
     try {      
       User.setID(telegram.initDataUnsafe.user.id);
@@ -54,9 +55,6 @@ class Boot extends Phaser.Scene {
       User.setID('0');
       User.setName('Неизвестный игрок');
     }
-    console.clear();
-    console.log(telegram.initData);
-    console.log(User.id);
 
     axios.post(process.env.API + '/getData', {
       id: User.id,
