@@ -6,6 +6,8 @@ class User {
     makeAutoObservable(this);
   }
 
+  public id: string = null;
+  public name: string = null;
   public rules: boolean = false;
   public score: number = 0;
   public record: number = 0;
@@ -25,6 +27,16 @@ class User {
   public markRules(): boolean {
     this.rules = true;
     return this.rules;
+  }
+
+  public setID(id: string): string {
+    this.id = id;
+    return this.id;
+  }
+
+  public setName(name: string): string {
+    this.name = name;
+    return this.name;
   }
 }
 

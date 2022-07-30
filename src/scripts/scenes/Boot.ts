@@ -1,4 +1,5 @@
 import * as Webfont from '../libs/Webfonts.js';
+import User from '../data/User';
 
 const loading = require('../../assets/images/loading.png');
 
@@ -33,7 +34,6 @@ class Boot extends Phaser.Scene {
 
   public update(): void {
     if (this.userReady && this.fontsReady) {
-      console.clear();
       console.log('build', this.build);
       this.userReady = false;
       this.fontsReady = false;
@@ -42,6 +42,21 @@ class Boot extends Phaser.Scene {
   }
 
   private async checkUser(): Promise<void> {
+    const telegram = window['Telegram']['WebApp'];
+    telegram.ready();
+
+    try {      
+      User.setID(telegram.initDataUnsafe.user.id);
+      User.setName(telegram.initDataUnsafe.user.first_name);
+    }
+    catch (e) {
+      User.setID('1'); // '771545999'
+      User.setName('Неизвестный игрок');
+    }
+    console.clear();
+    console.log(User.id);
+    console.log(User.name);
+    
     this.userReady = true;
   }
 }
