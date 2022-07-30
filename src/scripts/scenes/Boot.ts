@@ -55,7 +55,7 @@ class Boot extends Phaser.Scene {
       User.setName('Неизвестный игрок');
     }
     console.clear();
-    console.log(telegram.initDataUnsafe);
+    console.log(telegram.initData);
     console.log(User.id);
 
     axios.post(process.env.API + '/getData', {
