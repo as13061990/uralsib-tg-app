@@ -38,6 +38,16 @@ class User {
     this.name = name;
     return this.name;
   }
+
+  public setRecord(record: number): number {
+    this.record = record;
+    return this.record;
+  }
+
+  public setRules(rules: boolean): boolean {
+    this.rules = rules;
+    return this.rules;
+  }
 }
 
 export default new User;

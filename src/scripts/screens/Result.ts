@@ -3,6 +3,7 @@ import Menu from '../scenes/Menu';
 import Settings from '../data/Settings';
 import { screen } from '../types/enums';
 import User from '../data/User';
+import axios from 'axios';
 
 class Result implements Iscreen {
   constructor(scene: Menu) {
@@ -78,8 +79,9 @@ class Result implements Iscreen {
       this.scene.scene.start('Game');
     }
     prize.callback = (): void => {
-      console.log('prize');
+      this.sendPrize();
     }
+    this.sendData();
   }
 
   private scores(score: number): string {
@@ -96,7 +98,18 @@ class Result implements Iscreen {
       if (lastDigits === 11 || lastDigits === 12 || lastDigits === 13 || lastDigits === 14) word = Settings.lang.score3;
     }
     return word;
-  } 
+  }
+
+  private sendData(): void {
+    axios.post(process.env.API + '/sendData', {
+      id: User.id,
+      record: User.record
+    });
+  }
+
+  private sendPrize(): void {
+    axios.post(process.env.API + '/prize', {});
+  }
 
   public hide(): void {}
   public show(): void {}

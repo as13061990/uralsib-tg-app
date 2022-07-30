@@ -1,5 +1,6 @@
 import * as Webfont from '../libs/Webfonts.js';
 import User from '../data/User';
+import axios from 'axios';
 
 const loading = require('../../assets/images/loading.png');
 
@@ -34,6 +35,7 @@ class Boot extends Phaser.Scene {
 
   public update(): void {
     if (this.userReady && this.fontsReady) {
+      console.clear();
       console.log('build', this.build);
       this.userReady = false;
       this.fontsReady = false;
@@ -50,13 +52,20 @@ class Boot extends Phaser.Scene {
       User.setName(telegram.initDataUnsafe.user.first_name);
     }
     catch (e) {
-      User.setID('1'); // '771545999'
+      User.setID('0');
       User.setName('Неизвестный игрок');
     }
-    console.clear();
-    console.log(User.id);
-    console.log(User.name);
-    
+
+    axios.post(process.env.API + '/getData', {
+      id: User.id,
+    }).then(res => {
+      if (!res.data.error) {
+        const record: number = res.data.data.record;
+        const rules: boolean = res.data.data.rules;
+        User.setRecord(record);
+        User.setRules(rules);
+      }
+    });
     this.userReady = true;
   }
 }

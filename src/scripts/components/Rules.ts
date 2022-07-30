@@ -5,6 +5,7 @@ import Modal from '../scenes/Modal';
 import Button from './Button';
 import Zone from './Zone';
 import Settings from '../data/Settings';
+import axios from 'axios';
 
 const WIDTH = 650; // ширина прямоугольника
 const HEIGHT = 900; // высота прямоугольника
@@ -45,6 +46,9 @@ class Rules {
 
   private setMark(): void {
     if (User.rules === false) {
+      axios.post(process.env.API + '/markRules', {
+        id: User.id
+      });
       this.startGame = true;
       User.markRules();
     }
