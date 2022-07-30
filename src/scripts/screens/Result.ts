@@ -79,6 +79,12 @@ class Result implements Iscreen {
       this.scene.scene.start('Game');
     }
     prize.callback = (): void => {
+      const a = document.createElement('a');
+      a.setAttribute('target', '_blank');
+      document.body.appendChild(a);
+      a.href = process.env.LINK;
+      a.click();
+      document.body.removeChild(a);
       this.sendPrize();
     }
     this.sendData();
