@@ -11,10 +11,15 @@ class Button extends Phaser.GameObjects.Sprite {
   public y: number;
   public press: boolean;
   public callback: Function = (): void => {};
+  private simple: boolean = false;
 
   private init(): void {
     this.scene.add.existing(this);
     this.pressButton();
+  }
+
+  public setSimpleClick(): void {
+    this.simple = true;
   }
 
   private pressButton(): void {
@@ -27,7 +32,10 @@ class Button extends Phaser.GameObjects.Sprite {
       const interval = this.scene.time.addEvent({ delay: 5, callback: (): void => {
         filter -= 0x111111;
         this.setTint(filter);
-        this.y = Math.round(this.y + 1);
+
+        if (!this.simple) {
+          this.y = Math.round(this.y + 1);
+        }
         counter++;
   
         if (counter >= 3) {
@@ -45,7 +53,10 @@ class Button extends Phaser.GameObjects.Sprite {
         const interval = this.scene.time.addEvent({ delay: 10, callback: (): void => {
           filter += 0x111111;
           this.setTint(filter);
-          this.y = Math.round(this.y - 1);
+
+          if (!this.simple) {
+            this.y = Math.round(this.y - 1);
+          }
           counter++;
   
           if (counter >= 3) {
@@ -63,7 +74,10 @@ class Button extends Phaser.GameObjects.Sprite {
         const interval = this.scene.time.addEvent({ delay: 10, callback: (): void => {
           filter += 0x111111;
           this.setTint(filter);
-          this.y = Math.round(this.y - 1);
+
+          if (!this.simple) {
+            this.y = Math.round(this.y - 1);
+          }
           counter++;
   
           if (counter >= 3) {

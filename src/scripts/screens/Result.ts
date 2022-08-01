@@ -20,16 +20,18 @@ class Result implements Iscreen {
     const logo = this.scene.add.sprite(camera.centerX + 20, 230, 'result');
 
     const score = User.score + ' ' + this.scores(User.score);
-    this.scene.add.text(logo.x + 5, logo.y - 45, score, {
+    this.scene.add.text(logo.x + 132, logo.y - 45, score, {
       font: '42px stolzl_medium',
-      color: '#FFFFFF'
-    });
+      color: '#FFFFFF',
+      align: 'center'
+    }).setOrigin(0.5, 0);
 
     const record = Settings.lang.yourRecord + User.record + ' ' + this.scores(User.record);
-    this.scene.add.text(logo.x + 5, logo.y + 20, record, {
+    this.scene.add.text(logo.x + 132, logo.y + 20, record, {
       font: '19px stolzl_medium',
-      color: '#FFFFFF'
-    });
+      color: '#FFFFFF',
+      align: 'center'
+    }).setOrigin(0.5, 0);
 
     this.scene.add.text(camera.centerX, camera.centerY - 185, Settings.lang.resultDescr, {
       font: '28px stolzl_light',

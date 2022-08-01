@@ -18,10 +18,10 @@ class ProgressBar {
     this.bg = this.scene.add.sprite(30, 80, 'progress-bg').setOrigin(0, 0.5);
     const bounds = this.bg.getBounds();
 
-    this.text = this.scene.add.text(bounds.right + 20, this.bg.y, '0', {
-      font: 'bold 34px stolzl_medium',
+    this.text = this.scene.add.text(bounds.right + 57, this.bg.y, '0', {
+      font: '34px stolzl_medium',
       color: '#7545C9',
-    }).setOrigin(0, 0.5);
+    }).setOrigin(0.5, 0.5);
 
     this.tile = this.scene.add.tileSprite(this.bg.x, this.bg.y, 0, this.bg.height, 'progress').setOrigin(0, 0.5);
     const mask = this.bg.createBitmapMask();
