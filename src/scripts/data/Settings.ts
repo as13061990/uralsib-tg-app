@@ -9,7 +9,7 @@ class Settings {
 
   public readonly sizes = {
     minWidth: 720,
-    maxWidth: 900,
+    maxWidth: 1000,
     minHeight: 1200,
     maxHeight: 1620
   }
