@@ -15,7 +15,8 @@ class ProgressBar {
   private tween: Phaser.Tweens.Tween;
 
   private init(): void {
-    this.bg = this.scene.add.sprite(30, 80, 'progress-bg').setOrigin(0, 0.5);
+    const camera = this.scene.cameras.main;
+    this.bg = this.scene.add.sprite(camera.centerX - 330, 80, 'progress-bg').setOrigin(0, 0.5);
     const bounds = this.bg.getBounds();
 
     this.text = this.scene.add.text(bounds.right + 57, this.bg.y, '0', {

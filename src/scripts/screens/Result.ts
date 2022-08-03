@@ -16,7 +16,7 @@ class Result implements Iscreen {
 
   private init(): void {
     const camera = this.scene.cameras.main;
-    
+
     const logo = this.scene.add.sprite(camera.centerX + 20, 230, 'result');
 
     const score = User.score + ' ' + this.scores(User.score);
@@ -49,7 +49,7 @@ class Result implements Iscreen {
     this.scene.add.sprite(ad.getBounds().left - 8, ad.y, 'dot');
     this.scene.add.sprite(ad.getBounds().left + 90, ad.y + 50, 'dot');
     
-    const attention1 = this.scene.add.text(67, camera.centerY + 190, Settings.lang.attention1, {
+    const attention1 = this.scene.add.text(camera.centerX - 293, camera.centerY + 190, Settings.lang.attention1, {
       font: '28px stolzl_light',
       color: '#FFFFFF'
     }).setOrigin(0, 0.5);
@@ -59,7 +59,7 @@ class Result implements Iscreen {
       color: '#FFFFFF'
     }).setOrigin(0, 0.5);
 
-    const oneApplication = this.scene.add.text(72, attention1.y + 35, Settings.lang.oneApplication, {
+    const oneApplication = this.scene.add.text(camera.centerX - 288, attention1.y + 35, Settings.lang.oneApplication, {
       font: '28px stolzl_medium',
       color: '#FFFFFF'
     }).setOrigin(0, 0.5);

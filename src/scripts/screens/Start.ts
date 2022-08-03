@@ -31,7 +31,7 @@ class Start implements Iscreen {
       align: 'center'
     }).setOrigin(0.5, 0.5).setLineSpacing(5);
 
-    this.runFinsih = this.scene.add.text(80, this.text.getBounds().bottom + 40, Settings.lang.runFinsih, {
+    this.runFinsih = this.scene.add.text(main.centerX - 280, this.text.getBounds().bottom + 40, Settings.lang.runFinsih, {
       font: '28px stolzl_light',
       color: '#FFFFFF'
     });
@@ -41,7 +41,7 @@ class Start implements Iscreen {
       color: '#FFFFFF'
     });
 
-    this.bonusRuble = this.scene.add.text(90, this.thousand.getBounds().bottom + 5, Settings.lang.bonusRuble, {
+    this.bonusRuble = this.scene.add.text(main.centerX - 270, this.thousand.getBounds().bottom + 5, Settings.lang.bonusRuble, {
       font: '28px stolzl_medium',
       color: '#FFFFFF'
     });
@@ -57,8 +57,8 @@ class Start implements Iscreen {
       align: 'center'
     }).setOrigin(0.5, 0);
 
-    this.rules = new Button(this.scene, 200, this.scene.cameras.main.height - 140, 'rules-btn');
-    this.start = new Button(this.scene, 520, this.scene.cameras.main.height - 140, 'start-btn');
+    this.rules = new Button(this.scene, main.centerX - 160, this.scene.cameras.main.height - 140, 'rules-btn');
+    this.start = new Button(this.scene, main.centerX + 160, this.scene.cameras.main.height - 140, 'start-btn');
     this.rules.callback = (): void => this.scene.actions.clickRulesBtn();
     this.start.callback = (): void => this.scene.actions.clickStartBtn();
   }

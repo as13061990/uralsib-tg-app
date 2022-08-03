@@ -4,7 +4,7 @@ const MAX_JUMP = 500; // максимальный счетчик нажатия 
 
 class Player extends Phaser.Physics.Arcade.Sprite {
   constructor(scene: Game) {
-    super(scene, 150, scene.cameras.main.centerY, 'player');
+    super(scene, scene.cameras.main.centerX - 210, scene.cameras.main.centerY, 'player');
     this.init();
   }
 

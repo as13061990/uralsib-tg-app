@@ -18,13 +18,16 @@ window.onload = (): void => {
     const root: HTMLElement = document.querySelector('#root');
     const clientHeight = Math.round(document.body.clientHeight);
     const clientWidth = Math.round(document.body.clientWidth);
-    const canvasWidth = Settings.sizes.width;
-    let canvasHeight = Math.round((Settings.sizes.width * clientHeight) / clientWidth);
+    let canvasWidth = Math.round((Settings.sizes.minHeight * clientWidth) / clientHeight);
+    let canvasHeight = Math.round((Settings.sizes.minWidth * clientHeight) / clientWidth);
     let width = 0;
     let height = 0;
     
     if (canvasHeight > Settings.sizes.maxHeight) canvasHeight = Settings.sizes.maxHeight;
     else if (canvasHeight < Settings.sizes.minHeight) canvasHeight = Settings.sizes.minHeight;
+    
+    if (canvasWidth > Settings.sizes.maxWidth) canvasWidth = Settings.sizes.maxWidth;
+    else if (canvasWidth < Settings.sizes.minWidth) canvasWidth = Settings.sizes.minWidth;
  
     const x = canvasWidth / gcd(canvasHeight, canvasWidth);
     const y = canvasHeight / gcd(canvasHeight, canvasWidth);

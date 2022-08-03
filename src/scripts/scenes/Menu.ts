@@ -17,7 +17,8 @@ class Menu extends Phaser.Scene {
   }
 
   public create(): void {
-    this.add.sprite(this.cameras.main.centerX, this.cameras.main.height, 'gradient').setOrigin(0.5, 1);
+    const bg = this.add.sprite(0, this.cameras.main.height, 'gradient').setOrigin(0, 1);
+    bg.setDisplaySize(this.cameras.main.width, bg.height);
 
     if (Settings.screen === screen.START) {
       this.screen = new Start(this);
