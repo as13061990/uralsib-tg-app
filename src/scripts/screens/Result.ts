@@ -81,10 +81,11 @@ class Result implements Iscreen {
       this.scene.scene.start('Game');
     }
     prize.callback = (): void => {
+      const link = process.env.LINK + '?utm_source=telegram&utm_medium=smm&utm_campaign=telegram_phy-debit_game_all_rus&utm_term=' + User.record + '&utm_content=' + User.username;
       const a = document.createElement('a');
       a.setAttribute('target', '_blank');
       document.body.appendChild(a);
-      a.href = process.env.LINK;
+      a.href = link;
       a.click();
       document.body.removeChild(a);
       this.sendPrize();

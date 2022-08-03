@@ -35,7 +35,7 @@ class Boot extends Phaser.Scene {
 
   public update(): void {
     if (this.userReady && this.fontsReady) {
-      console.clear();
+      // console.clear();
       console.log('build', this.build);
       this.userReady = false;
       this.fontsReady = false;
@@ -48,14 +48,20 @@ class Boot extends Phaser.Scene {
     telegram.ready();
     telegram.expand();
 
-    try {      
-      User.setID(telegram.initDataUnsafe.user.id);
-      User.setName(telegram.initDataUnsafe.user.first_name);
-    }
-    catch (e) {
-      User.setID('0');
-      User.setName('Неизвестный игрок');
-    }
+    const clientHeight = Math.round(document.body.clientHeight);
+    const clientWidth = Math.round(document.body.clientWidth);
+    console.log(telegram.viewportHeight);
+    console.log('clientHeight', clientHeight);
+    console.log('clientWidth', clientWidth);
+    
+    try { User.setID(telegram.initDataUnsafe.user.id); }
+    catch (e) { User.setID('0'); }
+    
+    try { User.setName(telegram.initDataUnsafe.user.first_name); }
+    catch (e) { User.setName('Неизвестный игрок'); }
+    
+    try { User.setUsername(telegram.initDataUnsafe.user.username); }
+    catch (e) { User.setUsername('no_username'); }
 
     axios.post(process.env.API + '/getData', {
       id: User.id,

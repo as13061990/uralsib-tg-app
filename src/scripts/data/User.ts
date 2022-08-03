@@ -12,6 +12,7 @@ class User {
   public score: number = 0;
   public record: number = 0;
   public maxScore: number = 1000;
+  public username: string = null;
 
   public resetScore(): number {
     this.score = 0;
@@ -37,6 +38,11 @@ class User {
   public setName(name: string): string {
     this.name = name;
     return this.name;
+  }
+
+  public setUsername(username: string): string {
+    this.username = username;
+    return this.username;
   }
 
   public setRecord(record: number): number {
