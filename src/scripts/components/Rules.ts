@@ -81,13 +81,14 @@ class Rules {
 
   private createTexts(): void {
     const y = this.closeBtn.y + 30;
+    const camera = this.scene.cameras.main;
 
-    const rules = this.scene.add.text(this.scene.cameras.main.centerX, y, Settings.lang.rules.toUpperCase(), {
+    const rules = this.scene.add.text(camera.centerX, y, Settings.lang.rules.toUpperCase(), {
       font: 'bold 40px stolzl_light',
       color: '#000000'
     }).setOrigin(0.5, 0);
 
-    const descr1 = this.scene.add.text(90, rules.getBounds().bottom + 50, Settings.lang.rulesDescr1, {
+    const descr1 = this.scene.add.text(camera.centerX - 270, rules.getBounds().bottom + 50, Settings.lang.rulesDescr1, {
       font: '30px stolzl_light',
       color: '#000000'
     });
@@ -123,7 +124,7 @@ class Rules {
   }
 
   private createBlueIcons(y: number): void {
-    const position = 255;
+    const position = this.scene.cameras.main.centerX - 105;
 
     for (let i = 1; i <= 4; i++) {
       const x = position + i * 50;
@@ -133,7 +134,7 @@ class Rules {
   }
 
   private createRedIcons(y: number): void {
-    const position = 255;
+    const position = this.scene.cameras.main.centerX - 105;
 
     for (let i = 1; i <= 5; i++) {
       const x = position + i * 50;

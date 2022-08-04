@@ -26,8 +26,8 @@ class Game extends Phaser.Scene {
 
   public create(): void {
     this.bg = new Background(this);
-    this.progress = new ProgressBar(this);
     this.pause = new Pause(this);
+    this.progress = new ProgressBar(this);
     this.player = new Player(this);
     this.platforms = this.physics.add.group();
     this.coins = this.physics.add.group();

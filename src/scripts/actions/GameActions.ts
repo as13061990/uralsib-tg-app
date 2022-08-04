@@ -164,6 +164,18 @@ class GameActions {
     this.scene.progress.update();
     return win;
   }
+
+  public getLeftUAPointX(): number {
+    return this.scene.cameras.main.width > Settings.sizes.minWidth ? 60 : 30;
+  }
+
+  public getRightUAPointX(): number {
+    return this.scene.cameras.main.width - this.getLeftUAPointX();
+  }
+
+  public getUASpace(): number {
+    return this.scene.cameras.main.width > Settings.sizes.minWidth ? 260 : 210;
+  }
 }
 
 export default GameActions;
