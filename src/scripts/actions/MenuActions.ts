@@ -32,6 +32,7 @@ const result = require('../../assets/images/result.png');
 const dot = require('../../assets/images/dot.png');
 const againBtn = require('../../assets/images/again-btn.png');
 const prizeBtn = require('../../assets/images/prize-btn.png');
+const wasted = require('../../assets/images/wasted.png');
 
 class MenuActions {
   constructor(scene: Menu) {
@@ -76,6 +77,7 @@ class MenuActions {
     this.scene.load.image('dot', dot);
     this.scene.load.image('again-btn', againBtn);
     this.scene.load.image('prize-btn', prizeBtn);
+    this.scene.load.image('wasted', wasted);
   }
 
   public clickRulesBtn(): void {

@@ -96,8 +96,9 @@ class GameActions {
     this.scene.bg.tween.stop();
     this.scene.gameOver = true;
  
-    this.scene.time.addEvent({ delay: 2000, callback: (): void => {
+    this.scene.time.addEvent({ delay: 4000, callback: (): void => {
       Settings.setScreen(screen.RESULT);
+      this.scene.scene.stop('Modal');
       this.scene.scene.start('Menu');
     }, loop: false });
   }
@@ -117,6 +118,8 @@ class GameActions {
 
   private platformCollisions(player: Player, platform: Platform): void {
     this.gameOver();
+    this.scene.scene.launch('Modal');
+
     // const x = platform.x - platform.body.width / 2;
     // const y = platform.y;
     // player.setGravityY(0);

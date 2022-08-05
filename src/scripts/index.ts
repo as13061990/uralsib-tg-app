@@ -42,7 +42,7 @@ window.onload = (): void => {
     root.style.height = height + 'px';
     root.style.width = width + 'px';
     const config: Phaser.Types.Core.GameConfig = {
-      type: Phaser.AUTO,
+      type: Phaser.CANVAS,
       width: canvasWidth,
       height: canvasHeight,
       parent: 'root',
