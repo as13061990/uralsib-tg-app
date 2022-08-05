@@ -61,7 +61,8 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     }
     
     if (this.scene.gameOver) {
-      this.anims.play('crash', true);
+      // this.anims.play('crash', true);
+      this.anims.play('jump', true);
     } else if (!this.body.touching.down) {
       this.anims.play('jump', true);
     } else {

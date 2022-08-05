@@ -117,16 +117,16 @@ class GameActions {
 
   private platformCollisions(player: Player, platform: Platform): void {
     this.gameOver();
-    const x = platform.x - platform.body.width / 2;
-    const y = platform.y;
-    player.setGravityY(0);
-    this.scene.add.tween({
-      targets: player,
-      duration: 100,
-      x: x,
-      y: y,
-      onComplete: (): void => player.body.reset(x, y)
-    });
+    // const x = platform.x - platform.body.width / 2;
+    // const y = platform.y;
+    // player.setGravityY(0);
+    // this.scene.add.tween({
+    //   targets: player,
+    //   duration: 100,
+    //   x: x,
+    //   y: y,
+    //   onComplete: (): void => player.body.reset(x, y)
+    // });
   }
 
   private coinCollisions(player: Player, icon: Coin): void {
