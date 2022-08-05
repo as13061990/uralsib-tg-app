@@ -21,7 +21,7 @@ class Coin extends Phaser.Physics.Arcade.Sprite {
 
     this.tween = this.scene.add.tween({
       targets: this,
-      x: '-=' + Settings.speed,
+      x: '-=' + Settings.getSpeed(),
       duration: Settings.duration,
       onComplete: (): void => {
         this.mark?.destroy();

@@ -47,7 +47,7 @@ class Platform extends Phaser.Physics.Arcade.Sprite {
   private move(): void {
     this.tween = this.scene.add.tween({
       targets: this,
-      x: '-=' + Settings.speed,
+      x: '-=' + Settings.getSpeed(),
       duration: Settings.duration,
       onComplete: (): void => this.destroy()
     });

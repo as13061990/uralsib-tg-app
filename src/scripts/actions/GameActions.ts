@@ -69,7 +69,6 @@ class GameActions {
       if (last.getBounds().right + DISTANCE > this.scene.cameras.main.width) {
         return null;
       }
-
       const up =
         last.y - TOP_INDENT < TOP_INDENT ? false :
         last.y + BOTTOM_INDENT > this.scene.cameras.main.height - BOTTOM_INDENT ? true :

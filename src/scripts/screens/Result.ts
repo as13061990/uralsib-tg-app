@@ -16,8 +16,9 @@ class Result implements Iscreen {
 
   private init(): void {
     const camera = this.scene.cameras.main;
+    const percent = camera.height / 100;
 
-    const logo = this.scene.add.sprite(camera.centerX + 20, 230, 'result');
+    const logo = this.scene.add.sprite(camera.centerX + 20, 210, 'result');
 
     const score = User.score + ' ' + this.scores(User.score);
     this.scene.add.text(logo.x + 132, logo.y - 45, score, {
@@ -33,50 +34,50 @@ class Result implements Iscreen {
       align: 'center'
     }).setOrigin(0.5, 0);
 
-    this.scene.add.text(camera.centerX, camera.centerY - 185, Settings.lang.resultDescr, {
-      font: '28px stolzl_light',
+    this.scene.add.text(camera.centerX, camera.centerY - percent * 19, Settings.lang.resultDescr, {
+      font: '27px stolzl_light',
       color: '#FFFFFF',
       align: 'center'
     }).setOrigin(0.5, 0);
     
-    const ad = this.scene.add.text(camera.centerX + 20, camera.centerY + 60, Settings.lang.ad, {
-      font: '28px stolzl_medium',
+    const ad = this.scene.add.text(camera.centerX + 20, camera.centerY + percent * 7, Settings.lang.ad, {
+      font: '27px stolzl_medium',
       color: '#FFFFFF',
       align: 'center'
-    }).setOrigin(0.5, 0.5).setLineSpacing(15);
+    }).setOrigin(0.5, 0.5).setLineSpacing(5);
 
-    this.scene.add.sprite(ad.getBounds().left - 30, ad.y - 50, 'dot');
-    this.scene.add.sprite(ad.getBounds().left - 8, ad.y, 'dot');
-    this.scene.add.sprite(ad.getBounds().left + 90, ad.y + 50, 'dot');
+    this.scene.add.sprite(ad.getBounds().left + 50, ad.y - 38, 'dot');
+    this.scene.add.sprite(ad.getBounds().left - 28, ad.y, 'dot');
+    this.scene.add.sprite(ad.getBounds().left + 58, ad.y + 38, 'dot');
     
-    const attention1 = this.scene.add.text(camera.centerX - 293, camera.centerY + 190, Settings.lang.attention1, {
-      font: '28px stolzl_light',
+    const attention1 = this.scene.add.text(camera.centerX - 293, camera.centerY + percent * 16, Settings.lang.attention1, {
+      font: '27px stolzl_light',
       color: '#FFFFFF'
     }).setOrigin(0, 0.5);
 
     this.scene.add.text(attention1.getBounds().right + 12, attention1.y, Settings.lang.only, {
-      font: '28px stolzl_medium',
+      font: '27px stolzl_medium',
       color: '#FFFFFF'
     }).setOrigin(0, 0.5);
 
     const oneApplication = this.scene.add.text(camera.centerX - 288, attention1.y + 35, Settings.lang.oneApplication, {
-      font: '28px stolzl_medium',
+      font: '27px stolzl_medium',
       color: '#FFFFFF'
     }).setOrigin(0, 0.5);
 
     this.scene.add.text(oneApplication.getBounds().right + 12, oneApplication.y, Settings.lang.attention2, {
-      font: '28px stolzl_light',
+      font: '27px stolzl_light',
       color: '#FFFFFF'
     }).setOrigin(0, 0.5);
 
     this.scene.add.text(camera.centerX, oneApplication.y + 20, Settings.lang.attention3, {
-      font: '28px stolzl_light',
+      font: '27px stolzl_light',
       color: '#FFFFFF',
       align: 'center'
     }).setOrigin(0.5, 0);
 
-    const again = new Button(this.scene, camera.centerX, camera.height - 100, 'again-btn');
-    const prize = new Button(this.scene, camera.centerX, again.getBounds().top - 70, 'prize-btn');
+    const again = new Button(this.scene, camera.centerX, camera.height - 80, 'again-btn');
+    const prize = new Button(this.scene, camera.centerX, again.getBounds().top - 60, 'prize-btn');
     again.callback = (): void => {
       this.scene.scene.start('Game');
     }
