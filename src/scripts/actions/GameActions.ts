@@ -86,6 +86,7 @@ class GameActions {
   }
 
   public gameOver(): void {
+    this.scene.physics.world.removeCollider(this.scene.collider);
     this.platforms.remove();
     this.scene.platforms.children.iterate((platform: Platform): void => {
       platform.tween.stop();

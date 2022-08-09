@@ -18,6 +18,7 @@ class Game extends Phaser.Scene {
   public gameOver: boolean;
   public progress: ProgressBar;
   public pause: Pause;
+  public collider: Phaser.Physics.Arcade.Collider;
 
   public init(): void {
     this.gameOver = false;
@@ -31,7 +32,7 @@ class Game extends Phaser.Scene {
     this.player = new Player(this);
     this.platforms = this.physics.add.group();
     this.coins = this.physics.add.group();
-    this.physics.add.collider(this.player, this.platforms);
+    this.collider = this.physics.add.collider(this.player, this.platforms);
     this.actions.startPlatforms();
     this.actions.createClickZone();
     this.actions.setCollosions();

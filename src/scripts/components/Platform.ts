@@ -20,7 +20,7 @@ class Platform extends Phaser.Physics.Arcade.Sprite {
   private init(): void {
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
-    this.body.setSize(this.size, 50);
+    this.body.setSize(this.size - 10, 50);
     this.setPushable(false);
     this.build();
     this.move();
