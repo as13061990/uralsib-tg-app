@@ -48,7 +48,7 @@ window.onload = (): void => {
       parent: 'root',
       physics: {
         default: 'arcade',
-        arcade: { debug: true }
+        // arcade: { debug: true }
       },
       render: { transparent: true },
       scene: [ Boot, Menu, Game, Modal ]
