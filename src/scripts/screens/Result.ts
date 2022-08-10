@@ -82,7 +82,13 @@ class Result implements Iscreen {
       this.scene.scene.start('Game');
     }
     prize.callback = (): void => {
-      const link = process.env.LINK + '?utm_source=smit&utm_medium=smm&utm_campaign=telegram_phy-debit_game_all_rus&utm_term=' + User.record + '&utm_content=' + User.username;
+      const first = String(Phaser.Math.Between(1000, 9999));
+      const second = String(Phaser.Math.Between(1000, 9999));
+      const record = String(User.record).length === 1 ? '000' + String(User.record) :
+        String(User.record).length === 2 ? '00' + String(User.record) :
+        String(User.record).length === 3 ? '0' + String(User.record) : String(User.record);
+      const utm = first + record + second;
+      const link = process.env.LINK + '?utm_source=smit&utm_medium=smm&utm_campaign=telegram_phy-debit_game_all_rus&utm_term=' + utm + '&utm_content=' + User.username;
       const a = document.createElement('a');
       a.setAttribute('target', '_blank');
       document.body.appendChild(a);
