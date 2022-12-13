@@ -118,8 +118,13 @@ class GameActions {
   }
 
   private platformCollisions(player: Player, platform: Platform): void {
-    this.gameOver();
-    this.scene.scene.launch('Modal');
+    const platformY = platform.y - platform.body.height / 2;
+    const playerY = player.y + player.body.height / 2;
+
+    if (playerY > platformY + 5) {
+      this.gameOver();
+      this.scene.scene.launch('Modal');
+    }
 
     // const x = platform.x - platform.body.width / 2;
     // const y = platform.y;
