@@ -3,7 +3,6 @@ import Menu from '../scenes/Menu';
 import Settings from '../data/Settings';
 import { screen } from '../types/enums';
 import User from '../data/User';
-import axios from 'axios';
 
 class Result implements Iscreen {
   constructor(scene: Menu) {
@@ -82,22 +81,20 @@ class Result implements Iscreen {
       this.scene.scene.start('Game');
     }
     prize.callback = (): void => {
-      const first = String(Phaser.Math.Between(1000, 9999));
-      const second = String(Phaser.Math.Between(1000, 9999));
-      const record = String(User.record).length === 1 ? '000' + String(User.record) :
-        String(User.record).length === 2 ? '00' + String(User.record) :
-        String(User.record).length === 3 ? '0' + String(User.record) : String(User.record);
-      const utm = first + record + second;
-      const link = process.env.LINK + '?utm_source=smit&utm_medium=smm&utm_campaign=telegram_phy-debit_game_all_rus&utm_term=' + utm + '&utm_content=' + User.username;
-      const a = document.createElement('a');
-      a.setAttribute('target', '_blank');
-      document.body.appendChild(a);
-      a.href = link;
-      a.click();
-      document.body.removeChild(a);
-      this.sendPrize();
+      // const first = String(Phaser.Math.Between(1000, 9999));
+      // const second = String(Phaser.Math.Between(1000, 9999));
+      // const record = String(User.record).length === 1 ? '000' + String(User.record) :
+      //   String(User.record).length === 2 ? '00' + String(User.record) :
+      //   String(User.record).length === 3 ? '0' + String(User.record) : String(User.record);
+      // const utm = first + record + second;
+      // const link = process.env.LINK + '?utm_source=smit&utm_medium=smm&utm_campaign=telegram_phy-debit_game_all_rus&utm_term=' + utm + '&utm_content=' + User.username;
+      // const a = document.createElement('a');
+      // a.setAttribute('target', '_blank');
+      // document.body.appendChild(a);
+      // a.href = link;
+      // a.click();
+      // document.body.removeChild(a);
     }
-    this.sendData();
   }
 
   private scores(score: number): string {
@@ -114,17 +111,6 @@ class Result implements Iscreen {
       if (lastDigits === 11 || lastDigits === 12 || lastDigits === 13 || lastDigits === 14) word = Settings.lang.score3;
     }
     return word;
-  }
-
-  private sendData(): void {
-    axios.post(process.env.API + '/sendData', {
-      id: User.id,
-      record: User.record
-    });
-  }
-
-  private sendPrize(): void {
-    axios.post(process.env.API + '/prize', {});
   }
 
   public hide(): void {}
